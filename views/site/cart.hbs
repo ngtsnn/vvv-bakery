@@ -1,0 +1,87 @@
+{{#section 'css'}}
+    <!--add your style here-->
+    <link rel="stylesheet" href="../../components/header/style.css" />
+    <link rel="stylesheet" href="../../components/footer/style.css" />
+    <link rel="stylesheet" href="../../components/title/style.css" />
+    <link rel="stylesheet" href="../../components/cards/style.css" />
+    <link rel="stylesheet" href="../../components/carousel/style.css" />
+    <link rel="stylesheet" href="../../components/jumbotron/style.css" />
+    <link rel="stylesheet" href="../../components/backtotop/style.css" />
+    <link rel="stylesheet" href="../../components/popup-form/style.css" />
+    <link rel="stylesheet" href="../../components/signup-signin/style.css" />
+    <link rel="stylesheet" href="../../components/button-icon-link/style.css" />
+    <link rel="stylesheet" href="../../components/see-more-collapse/style.css" />
+    <link rel="stylesheet" href="../../components/cart/style.css" />
+{{/section}}
+ 
+    <!--body-->
+    <div class="shopping-cart">
+      <div class="column-labels">
+        <label class="product-image">Mã đơn hàng: </label>
+        <label class="product-details">Bánh</label>
+        <label class="product-price">Giá</label>
+        <label class="product-quantity">Số lượng</label>
+        <label class="product-removal">Xóa</label>
+        <label class="product-line-price">Tổng</label>
+      </div>
+
+        {{#if isEmpty}}
+        <p>Chua co san pham nao duoc them vao gio hang</p>
+        {{else}}
+        {{#each cart_detail_arr}}
+      <div class="product">
+        <div type="hidden" id="product-id">{{productID}}</div>
+        <div class="product-image">
+          <input type="checkbox" class="larger product-check" />
+          <img src="../../images/{{origin}}" />
+        </div>
+        <div class="product-details">
+          <div class="product-title">
+            <a href="/product/{{productID}}">
+              {{productName}}  
+            </a>
+            <p class="product-description">
+              {{description}}
+            </p>
+          </div>
+        </div>
+        <div class="product-price">{{unitPrice}}</div>
+        <div class="product-quantity">
+          <input type="number" value={{quantity}} step="1" min="1" oninput="validity.valid||(value='1');"/>
+        </div>
+        <div class="product-removal">
+          <button class="remove-product">x</button>
+        </div>
+        <div class="product-line-price"></div>
+      </div>
+      {{/each}}
+        {{/if}}
+
+
+      <div class="totals">
+        <div class="totals-item">
+          <label>Thành tiền</label>
+          <div class="totals-value" id="cart-subtotal">0</div>
+        </div>
+        <div class="totals-item">
+          <label>Phí vận chuyển</label>
+          <div class="totals-value" id="cart-shipping">0</div>
+        </div>
+        <div class="totals-item" style="color: red; font-size: 20pt">
+          <label>Tổng tiền</label>
+          <div class="totals-value" id="cart-total">0</div>
+        </div>
+        <a href="/checkout">
+          <button class="checkout" onclick="checkout()">Đặt hàng</button>
+        </a>
+      </div>
+    </div>
+ 
+ {{#section 'js'}}
+    <script src="../../components/backtotop/script.js"></script>
+    <script src="../../components/popup-form/script.js"></script>
+    <script src="../../components/signup-signin/script.js"></script>
+    <script src="../../components/button-icon-link/script.js"></script>
+    <script src="../../components/see-more-collapse/script.js"></script>
+    <script src="../../components/cart/func.js"></script>
+{{/section}}

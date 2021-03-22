@@ -1,0 +1,138 @@
+  {{#section 'css'}}
+  <!--add your style here-->
+  <link rel="stylesheet" href="../../components/header/style.css" />
+  <link rel="stylesheet" href="../../components/footer/style.css" />
+  <link rel="stylesheet" href="../../components/title/style.css" />
+  <link rel="stylesheet" href="../../components/cards/style.css" />
+  <link rel="stylesheet" href="../../components/carousel/style.css" />
+  <link rel="stylesheet" href="../../components/jumbotron/style.css" />
+  <link rel="stylesheet" href="../../components/backtotop/style.css" />
+  <link rel="stylesheet" href="../../components/breadcrumb/style.css" />
+  <link rel="stylesheet" href="../../components/side-list/style.css" />
+  <link rel="stylesheet" href="../../components/popup-form/style.css" />
+  <link rel="stylesheet" href="../../components/signup-signin/style.css" />
+  <link rel="stylesheet" href="../../components/double-slider-input/style.css" />
+  <link rel="stylesheet" href="../../components/button-icon-link/style.css" />
+{{/section}}
+
+  <!--body-->
+  <div class="gap-xs"></div>
+
+  <div class="breadcrumb-section">
+    <div class="gap-xs"></div>
+    <div class="container">
+      <ul class="my-breadcrumb">
+        <li class="my-breadcrumb-item">
+          <a href="/"> Trang chủ </a>
+        </li>
+        <li class="my-breadcrumb-item active">Sản phẩm</li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <div class="products-section">
+    <div class="gap-md"></div>
+
+    <div class="container">
+      <div class="">
+        <div class="title">Các sản phẩm của BKT Bakery</div>
+      </div>
+
+      <div class="gap-xs"></div>
+      <div class="clearfix">
+        <!--Menu bar-->
+        <div class="side-list float-left col-lg-3 bg-w d-none d-lg-block">
+          <div class="c-dark-2 side-list-title">Các dòng bánh</div>
+          <ul class="side-list-menu">
+            {{#each product_type_Arr}}
+            <li>
+              <a href="/search?product-type={{productTypeID}}">
+              <button class="side-list-item {{#ifeq ../product_type this.productTypeID }} active {{/ifeq}}">
+                {{productType}}
+              </button>
+              </li>
+              </a>
+            </li>
+            {{/each}}
+            <li class="ml-lg-5">
+              <p>Giá</p>
+              <div class="range-slider" id="double-range-slider" data-target="#post-1">
+                <span class="rangeValues"></span>
+                <input value="1000" min="1000" max="1000000" step="1000" type="range">
+                <input value="900000" min="1000" max="1000000" step="1000" type="range">
+              </div>
+            
+            </li>
+          </ul>
+        </div>
+
+        <!--sản phẩm đưa ra-->
+        <div class="row collapse-post" id="post-1">
+
+          {{#each product_Arr}}
+          <div class="col-sm-12 col-md-5 col-lg-4 col-xl-4 my-3">
+            <div class="card bg-w">
+              <div class="card-header">
+                <img src="../../images/{{origin}}" alt="gido" />
+              </div>
+              <div class="card-body">
+                <h3 class="product-name">
+                  {{productName}}
+                </h3>
+                <div class="unit-price">
+                  {{unitPrice}}
+                </div>
+              </div>
+
+              <div class="card-footer bg-w">
+                <div class="icons">
+                  <a href="#" class="fa-3x mx-1" title="mua ngay với 1-click">
+                    <i class="fas fa-hand-point-up"></i>
+                  </a>
+
+                  <a href="product/{{productID}}" class="fa-3x mx-1" title="xem trước">
+                    <i class="far fa-eye"></i>
+                  </a>
+
+                  <a class="fa-3x mx-1" title="thêm vào giỏ hàng">
+                    <i class="fas fa-cart-plus" onclick="add_one_to_cart({{productID}}); this.style.color = 'rgba(235, 128, 29, 1)'"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+
+        </div>
+      </div>
+      <div class="gap-lg"></div>
+    </div>
+
+  </div>
+
+  {{#section 'js'}}
+  <!--import your js here-->
+  <script src="../../components/side-list/script.js"></script>
+  <script src="../../components/backtotop/script.js"></script>
+  <script src="../../components/popup-form/script.js"></script>
+  <script src="../../components/signup-signin/script.js"></script>
+  <script src="../../components/double-slider-input/script.js"></script>
+  <script src="../../components/sort-cards/script.js"></script>
+
+  <script>
+    function add_one_to_cart(id){
+    $.post('/cart', {
+        productID: id,
+        quantity: 1
+    }, function (ketqua) {
+        if (ketqua) {
+        console.log(ketqua);
+        updateCartNumber();
+        } else {
+        alert('Invalid data.');
+        }
+    });
+    }
+  </script>
+  {{/section}}

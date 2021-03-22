@@ -1,0 +1,60 @@
+<div class="content">
+        <div class="container">
+          <div class="gap-xs"></div>
+          <div class="c-white row">
+            <div class="large-size col-lg-3">
+              SẢN PHẨM
+            </div>
+            <div class="col-lg-3">
+              <input type="search" placeholder="tìm kiếm" class="mt-2 py-1 pl-2 border-0" style="border-radius: 18px; outline:none;">
+            </div>
+            <div class="col-lg-3">
+              <div class="sort-by row bg-dark overflow-hidden my-2 ml-1">
+                <label for="sort-by-item-1" style="color: white;"> Sắp xếp theo: </label>
+                <select name="sort-by-toggle" class="sort-by-item bg-dark" id="sort-by-item-1" style="color: white; width: 85px;">
+                  <option value="id"> ID </option>
+                  <option value="Tên bánh"> Tên bánh </option>
+                  <option value="Đơn giá"> Đơn giá </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <a href="./product.html" class="d-block btn btn-primary mt-1 add">
+                + Thêm bản ghi 
+              </a>
+            </div>
+          </div>
+          <div class="gap-xs "></div>
+          <div class="table-responsive-lg">
+            <table class="table table-hover table-striped table-dark">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Tên bánh</th>
+                  <th scope="col">Loại bánh</th>
+                  <th scope="col">Cách chế biến</th>
+                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Đơn vị</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody hasSumary="false">
+                {{#each this.products}}
+                  <tr>
+                  <th scope="row">{{productID}}</th>
+                  <td>{{productName}}</td>
+                  <td>{{productType}}</td>
+                  <td>{{cookingType}}</td>
+                  <td>{{unitPrice}}</td>
+                  <td>{{unit}}</td>
+                  <td class="pt-1">
+                    <a href="./product.html" class="btn btn-outline-primary edit"> sửa </a>
+                    <button class="btn btn-outline-danger delete"> xóa </button>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>

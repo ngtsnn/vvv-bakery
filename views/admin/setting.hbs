@@ -1,0 +1,57 @@
+<div class="content">
+        <div class="container">
+          <div class="gap-xs"></div>
+          <div class="c-white row">
+            <div class="large-size col-lg-6">
+              <div class="ml-3">Thay đổi thông tin người dùng</div>
+            </div>
+            <div class="col-lg-6">
+              <div class="float-right col-lg-2 clear-fix">
+                <a href="javascript: $('#frmChangeInfoUserAdmin').submit();" class="d-block btn btn-success mt-1">
+                  Lưu
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="gap-xs"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 input-field mt-2">
+                <form id="frmChangeInfoUserAdmin" class="bg-dark c-white py-4 pb-4 px-3" method="POST" >
+                  <input name="adminID" type="hidden" id="adminID-field"/>
+                  <div class="form-group row">
+                    <label for="username" class="col-sm-2 mt-2">Tên đăng nhập</label>
+                    <div class="col-sm-10">
+                      <input name="adminName" type="text" class="form-control" id="username" placeholder="Tên đăng nhập">
+                    </div>
+                  </div>
+                  <div class="gap-xs"></div>
+                  <div class="form-group row">
+                    <label for="password" class="col-sm-2 mt-2">Mật khẩu</label>
+                    <div class="col-sm-10">
+                      <input name='adminPassword' type="password" class="form-control" id="password" placeholder="Mật khẩu">
+                    </div>
+                  </div>
+                  <div class="gap-xs"></div>
+                  <div class="form-group row">
+                    <label for="password" class="col-sm-2 mt-2">Email</label>
+                    <div class="col-sm-10">
+                      <input name='email' type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{{#section 'js'}}
+ <script>
+  const arrCookie = document.cookie.split('; ');
+    
+  $('#username').val(arrCookie.find(row => row.startsWith('username')).split('=')[1]);
+  $('#adminID-field').val(arrCookie.find(row => row.startsWith('adminID')).split('=')[1])
+
+ </script>
+{{/section}}
